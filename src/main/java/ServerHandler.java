@@ -1,5 +1,6 @@
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.codec.http.DefaultFullHttpResponse;
 import io.netty.handler.codec.http.DefaultHttpResponse;
 import io.netty.handler.codec.http.HttpRequest;
 import io.netty.handler.codec.http.HttpResponse;
@@ -13,7 +14,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<HttpRequest> {
         switch (state){
 
             case WAIT_REQUEST_1:
-                HttpResponse response = new DefaultHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
+                HttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
                 ctx.writeAndFlush(response);
                 this.state = State.WAIT_REQUEST_2;
                 break;

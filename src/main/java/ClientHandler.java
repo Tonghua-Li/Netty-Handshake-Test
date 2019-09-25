@@ -1,5 +1,6 @@
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.codec.http.DefaultFullHttpRequest;
 import io.netty.handler.codec.http.DefaultHttpRequest;
 import io.netty.handler.codec.http.HttpHeaderNames;
 import io.netty.handler.codec.http.HttpHeaderValues;
@@ -15,7 +16,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<HttpResponse> {
     }
 
     private HttpRequest createRequest1() {
-        HttpRequest request = new DefaultHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.GET, "");
+        HttpRequest request = new DefaultFullHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.GET, "");
         request.headers().set(HttpHeaderNames.HOST, "127.0.0.1");
         request.headers().set("request", "1");
         request.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
@@ -31,7 +32,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<HttpResponse> {
 
 
     private HttpRequest createRequest2() {
-        HttpRequest request = new DefaultHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.GET, "");
+        HttpRequest request = new DefaultFullHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.GET, "");
         request.headers().set("request", "2");
         request.headers().set(HttpHeaderNames.HOST, "127.0.0.1");
         request.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
